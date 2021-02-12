@@ -37,7 +37,7 @@ public class Couple {
         System.out.println(this);
     }
 
-    public boolean compare(Couple other) {
+    public boolean compare(Couple other) {  //Checks if the first p is larger than the second, if they're equal it checks if the q is larger
         return (this.p < other.p || (this.p == other.p && this.q < other.q));
     }
 

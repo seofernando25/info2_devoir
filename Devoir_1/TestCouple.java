@@ -1,7 +1,7 @@
 package Devoir_1;
 
-public class TestCouple {
-
+public class TestCouple {    
+                         //Test code for Couple
     public static void main(String[] args) {
         var c1 = new Couple(2, 3);
         var c2 = new Couple();

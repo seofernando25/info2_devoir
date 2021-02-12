@@ -1,7 +1,7 @@
 package Devoir_1;
 
 import java.util.Arrays;
-
+                         //Test code for TriTabCouple
 public class TestTriTabCouple {
     public static void main(String[] args) {
         // Not needed but usefull just to make sure
