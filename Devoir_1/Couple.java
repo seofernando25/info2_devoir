@@ -34,7 +34,7 @@ public class Couple {
     }
 
     public void display() {
-        System.out.println(String.format("(%s, %s)", this.p, this.q));
+        System.out.println(this);
     }
 
     public boolean compare(Couple other) {
