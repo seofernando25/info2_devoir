@@ -7,7 +7,7 @@ public class TestTriTabCouple {
         // Not needed but usefull just to make sure
         Couple[] tableau = new Couple[] { new Couple(8, 4), new Couple(3, 3), new Couple(3, 2), new Couple(8, 5),
                 new Couple() };
-        System.out.println("Original");
+        System.out.println("Original:");
         System.out.println(Arrays.toString(tableau));
 
         var tab = tableau.clone();
