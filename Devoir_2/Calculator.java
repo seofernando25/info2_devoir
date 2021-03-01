@@ -1,9 +1,13 @@
 package Devoir_2;
 
 public class Calculator {
+    // This class have a lot of "special cases" due
+    // to the requirements imposed by the question
+    // We are only allowed to use 3 variables in the class
+
     // Main accumumlator, general purpose accumulator
     public double acc, gpa = 0;
-    private String op = "";
+    public String op = "";
 
     public void pushNumber(double num) {
         if (this.op.isEmpty()) {
@@ -14,12 +18,11 @@ public class Calculator {
     }
 
     public void operation(String str) {
-
         if (this.op.isEmpty()) { // Prepare operation
             this.op = str;
         } else {
-            // We kinda can't do two operations at a time
-            // so we just calculate the previous one first
+            // If we try to do more than one operation at a time
+            // we precompute it and push to the accumulator
             this.compute();
             this.op = str;
         }
@@ -30,11 +33,16 @@ public class Calculator {
     }
 
     public void subtract() {
-        operation("-");
+        if (this.op.equals("-") && this.gpa == 0.0) {
+            this.op = "+";
+        } else {
+            operation("-");
+        }
     }
 
     public void multiply() {
         operation("*");
+        this.gpa = 1.0;
     }
 
     public void divide() {

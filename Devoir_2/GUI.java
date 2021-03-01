@@ -7,24 +7,46 @@ import java.awt.event.*;
 public class GUI extends JFrame implements ActionListener {
     private static final long serialVersionUID = 1L;
     private JTextField calcText;
+    private JButton decimalPlaceButton;
 
+    // Calculator input helper variables
     private String intInput = "";
-    private String fractionalInput = "";
+    private String decimalInput = "";
+    private String numberSign = "+";
     private boolean isFractInput = false;
 
     private Calculator calculator;
+
+    // Updates the calculator number on
+    // both screen and Calculator class
+    public void updateNumber() {
+        String numStr = numberSign;
+        if (intInput.isEmpty()) {
+            numStr += "0.";
+        } else {
+            numStr += intInput + ".";
+        }
+
+        if (decimalInput.isEmpty()) {
+            numStr += "0";
+        } else {
+            numStr += decimalInput;
+        }
+        double numToPush = Double.parseDouble(numStr);
+        this.calculator.pushNumber(numToPush);
+        this.calcText.setText(this.calculator.toString());
+    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         var command = e.getActionCommand();
 
-        if (command.equals(".")) {
-            isFractInput = true;
-            return;
-        }
-
+        // Handle number related input
         switch (command) {
             case ".":
+                isFractInput = true;
+                decimalPlaceButton.setEnabled(false);
+                return;
             case "1":
             case "2":
             case "3":
@@ -36,33 +58,36 @@ public class GUI extends JFrame implements ActionListener {
             case "9":
             case "0":
                 if (isFractInput) {
-                    this.fractionalInput += command;
+                    this.decimalInput += command;
                 } else {
                     this.intInput += command;
                 }
-
-                String numStr = "";
-                if (intInput.isEmpty()) {
-                    numStr += "0.";
-                } else {
-                    numStr += intInput + ".";
-                }
-
-                if (fractionalInput.isEmpty()) {
-                    numStr += "0";
-                } else {
-                    numStr += fractionalInput;
-                }
-                double numToPush = Double.parseDouble(numStr);
-                this.calculator.pushNumber(numToPush);
-                this.calcText.setText(this.calculator.toString());
+                this.updateNumber();
                 return;
+            case "-":
+                // Special case for when we add a negative sign
+                // or call the subtract() operation
+                if (this.intInput.isEmpty() && this.decimalInput.isEmpty() && this.calculator.op.isEmpty()
+                        && this.calculator.acc == 0.0) {
+                    if (numberSign == "-") {
+                        numberSign = "";
+                    } else {
+                        numberSign = "-";
+                    }
+                    updateNumber();
+                    return;
+                }
         }
 
-        // Reset for next digit
+        // If the event is going to be other
+        // than adding a digit, we reset it
         intInput = "";
-        fractionalInput = "";
+        decimalInput = "";
+        numberSign = "";
+        decimalPlaceButton.setEnabled(true);
         isFractInput = false;
+
+        // Handle operations calling
         switch (command) {
             case "C":
                 this.calculator.clear();
@@ -97,8 +122,6 @@ public class GUI extends JFrame implements ActionListener {
             case "Ans":
                 this.calculator.pushNumber(this.calculator.acc);
             default:
-                intInput = "";
-                fractionalInput = "";
                 break;
         }
         this.calcText.setText(this.calculator.toString());
@@ -141,7 +164,8 @@ public class GUI extends JFrame implements ActionListener {
         lowerPanel.add(new JButton("sqrt"));
 
         lowerPanel.add(new JButton("0"));
-        lowerPanel.add(new JButton("."));
+        decimalPlaceButton = new JButton(".");
+        lowerPanel.add(decimalPlaceButton);
         lowerPanel.add(new JButton("="));
         lowerPanel.add(new JButton("Ans"));
         lowerPanel.add(new JButton(""));
