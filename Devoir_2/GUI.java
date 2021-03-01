@@ -12,7 +12,7 @@ public class GUI extends JFrame implements ActionListener {
     // Calculator input helper variables
     private String intInput = "";
     private String decimalInput = "";
-    private String numberSign = "+";
+    private String numberSign = "";
     private boolean isFractInput = false;
 
     private Calculator calculator;
@@ -89,37 +89,37 @@ public class GUI extends JFrame implements ActionListener {
 
         // Handle operations calling
         switch (command) {
-            case "C":
+            case Calculator.STR_CLR:
                 this.calculator.clear();
                 break;
-            case "sqrt":
+            case Calculator.STR_SQR:
                 this.calculator.rootSquare();
                 break;
-            case "!":
+            case Calculator.STR_FAC:
                 this.calculator.factorial();
                 break;
-            case "=":
+            case Calculator.STR_CPT:
                 this.calculator.compute();
                 break;
-            case "^":
+            case Calculator.STR_POW:
                 this.calculator.pow();
                 break;
-            case "+":
+            case Calculator.STR_ADD:
                 calculator.add();
                 break;
-            case "-":
+            case Calculator.STR_SUB:
                 this.calculator.subtract();
                 break;
-            case "ln":
+            case Calculator.STR_LOG:
                 this.calculator.nepLog();
                 break;
-            case "*":
+            case Calculator.STR_MUL:
                 this.calculator.multiply();
                 break;
-            case "/":
+            case Calculator.STR_DIV:
                 this.calculator.divide();
                 break;
-            case "Ans":
+            case Calculator.STR_ANS:
                 this.calculator.pushNumber(this.calculator.acc);
             default:
                 break;
@@ -145,31 +145,31 @@ public class GUI extends JFrame implements ActionListener {
         lowerPanel.add(new JButton("7"));
         lowerPanel.add(new JButton("8"));
         lowerPanel.add(new JButton("9"));
-        lowerPanel.add(new JButton("C"));
+        lowerPanel.add(new JButton(Calculator.STR_CLR));
         lowerPanel.add(new JButton(""));
-        lowerPanel.add(new JButton("^"));
+        lowerPanel.add(new JButton(Calculator.STR_POW));
 
         lowerPanel.add(new JButton("4"));
         lowerPanel.add(new JButton("5"));
         lowerPanel.add(new JButton("6"));
-        lowerPanel.add(new JButton("*"));
-        lowerPanel.add(new JButton("/"));
-        lowerPanel.add(new JButton("!"));
+        lowerPanel.add(new JButton(Calculator.STR_MUL));
+        lowerPanel.add(new JButton(Calculator.STR_DIV));
+        lowerPanel.add(new JButton(Calculator.STR_FAC));
 
         lowerPanel.add(new JButton("1"));
         lowerPanel.add(new JButton("2"));
         lowerPanel.add(new JButton("3"));
-        lowerPanel.add(new JButton("+"));
-        lowerPanel.add(new JButton("-"));
-        lowerPanel.add(new JButton("sqrt"));
+        lowerPanel.add(new JButton(Calculator.STR_ADD));
+        lowerPanel.add(new JButton(Calculator.STR_SUB));
+        lowerPanel.add(new JButton(Calculator.STR_SQR));
 
         lowerPanel.add(new JButton("0"));
         decimalPlaceButton = new JButton(".");
         lowerPanel.add(decimalPlaceButton);
-        lowerPanel.add(new JButton("="));
-        lowerPanel.add(new JButton("Ans"));
+        lowerPanel.add(new JButton(Calculator.STR_CPT));
+        lowerPanel.add(new JButton(Calculator.STR_ANS));
         lowerPanel.add(new JButton(""));
-        lowerPanel.add(new JButton("ln"));
+        lowerPanel.add(new JButton(Calculator.STR_LOG));
 
         lowerPanel.setLayout(new GridLayout(4, 4));
         // upperPanel.add(quit_button);

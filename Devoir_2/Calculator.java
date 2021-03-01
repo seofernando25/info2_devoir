@@ -1,6 +1,18 @@
 package Devoir_2;
 
 public class Calculator {
+    public static final String STR_ANS = "Ans";
+    public static final String STR_CPT = "=";
+    public static final String STR_CLR = "C";
+    public static final String STR_ADD = "+";
+    public static final String STR_SUB = "-";
+    public static final String STR_MUL = "*";
+    public static final String STR_DIV = "/";
+    public static final String STR_FAC = "!";
+    public static final String STR_SQR = "sqrt";
+    public static final String STR_LOG = "ln";
+    public static final String STR_POW = "^";
+
     // This class have a lot of "special cases" due
     // to the requirements imposed by the question
     // We are only allowed to use 3 variables in the class
@@ -29,24 +41,24 @@ public class Calculator {
     }
 
     public void add() {
-        operation("+");
+        operation(STR_ADD);
     }
 
     public void subtract() {
-        if (this.op.equals("-") && this.gpa == 0.0) {
-            this.op = "+";
+        if (this.op.equals(STR_SUB) && this.gpa == 0.0) {
+            this.op = STR_ADD;
         } else {
-            operation("-");
+            operation(STR_SUB);
         }
     }
 
     public void multiply() {
-        operation("*");
+        operation(STR_MUL);
         this.gpa = 1.0;
     }
 
     public void divide() {
-        operation("/");
+        operation(STR_DIV);
     }
 
     public void factorial() {
@@ -61,44 +73,41 @@ public class Calculator {
     }
 
     public void pow() {
-        operation("^");
+        operation(STR_POW);
     }
 
     public void rootSquare() {
-        operation("sqrt");
+        operation(STR_SQR);
     }
 
     public void nepLog() {
-        operation("ln");
+        operation(STR_LOG);
     }
 
     public void compute() {
         // calculate operation and store on acc
         switch (this.op) {
-            case "-":
+            case STR_SUB:
                 this.gpa *= -1;
-            case "+":
+            case STR_ADD:
                 this.acc += this.gpa;
                 break;
-            case "/":
+            case STR_DIV:
                 this.gpa = 1 / this.gpa;
-            case "*":
+            case STR_MUL:
                 this.acc *= this.gpa;
                 break;
-            case "!":
-
-                break;
-            case "ln":
+            case STR_LOG:
                 if (this.acc == 0) {
                     this.acc = Math.log(gpa);
                 } else {
                     this.acc *= Math.log(gpa);
                 }
                 break;
-            case "^":
+            case STR_POW:
                 this.acc = Math.pow(this.acc, this.gpa);
                 break;
-            case "sqrt":
+            case STR_SQR:
                 if (this.acc == 0) {
                     this.acc = Math.sqrt(gpa);
                 } else {
@@ -124,11 +133,11 @@ public class Calculator {
             return Double.toString(this.acc);
         }
 
-        if (this.op.equals("ln") || this.op.equals("sqrt")) {
+        if (this.op.equals(STR_LOG) || this.op.equals(STR_SQR)) {
             if (this.acc == 0) {
                 return this.op + "(" + this.gpa + ")";
             } else {
-                return this.acc + " * " + this.op + "(" + this.gpa + ")";
+                return this.acc + " " + STR_MUL + " " + this.op + "(" + this.gpa + ")";
             }
         }
         return this.acc + " " + this.op + " " + this.gpa;
