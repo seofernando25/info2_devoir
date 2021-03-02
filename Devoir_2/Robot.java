@@ -18,8 +18,8 @@ public class Robot {
 
     public void moveTo(int x, int y) { // sets the location to be equal to the current location, plus the entered
                                        // coordinates
-        location.setX(location.getX() + Double.valueOf(x));
-        location.setY(location.getY() + Double.valueOf(y));
+        location.setX( location.getX() + x);
+        location.setY( location.getY() + y);
         System.out.println("moved to : " + this.location.toString());
     }
 
@@ -38,7 +38,7 @@ public class Robot {
         r.moveTo(2, 11);
         r.display();
         r2.display();
-        
+
         System.out.println("Distance entre les deux robots: " + r.distance(r2));
     }
 }

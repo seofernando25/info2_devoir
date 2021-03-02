@@ -2,29 +2,29 @@ package Devoir_2;
 
 public class Point {
 
-    private double x;
-    private double y;
+    private int x;
+    private int y;
 
     Point(double x, double y) {
-        this.x = x;
-        this.y = y;
+        this.x = (int)x;
+        this.y = (int) y;
     }
 
     // Accesseurs
-    double getX() {
+    int getX() {
         return x;
     }
 
-    double getY() {
+    int getY() {
         return y;
     }
 
     // Modificateurs
-    void setX(double x) {
+    void setX(int x) {
         this.x = x;
     }
 
-    void setY(double y) {
+    void setY(int y) {
         this.y = y;
     }
 
