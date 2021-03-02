@@ -14,7 +14,7 @@ public class Calculator {
     public static final String STR_POW = "^";
 
     // This class have a lot of "special cases" due
-    // to the requirements imposed by the question
+    // to the requirements imposed by the question           (passive agressive I see)
     // We are only allowed to use 3 variables in the class
 
     // Main accumumlator, general purpose accumulator
