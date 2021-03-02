@@ -14,7 +14,7 @@ public class Calculator {
     public static final String STR_POW = "^";
 
     // This class have a lot of "special cases" due
-    // to the requirements imposed by the question           (passive agressive I see)
+    // to the requirements imposed by the question (passive agressive I see)
     // We are only allowed to use 3 variables in the class
 
     // Main accumumlator, general purpose accumulator
@@ -59,6 +59,7 @@ public class Calculator {
 
     public void divide() {
         operation(STR_DIV);
+        this.gpa = 1.0;
     }
 
     public void factorial() {
@@ -127,6 +128,12 @@ public class Calculator {
     }
 
     public String toString() {
+        if (Double.isNaN(this.gpa) || Double.isNaN(this.acc) || Double.isInfinite(this.gpa)
+                || Double.isInfinite(this.acc)) {
+            this.gpa = 0;
+            this.acc = 0;
+            return "ERROR";
+        }
         if (this.op.isEmpty()) {
             if (this.acc == 0)
                 return Double.toString(this.gpa);
