@@ -15,9 +15,9 @@ public class Card {
     public static int MaxSuit = 3;
 
     static { // Static initialization
-        suitToStr.put(0, "Clubs");
+        suitToStr.put(0, "Hearts");
         suitToStr.put(1, "Diamonds");
-        suitToStr.put(2, "Hearts");
+        suitToStr.put(2, "Clubs");
         suitToStr.put(3, "Spades");
 
         valueToStr.put(1, "A");
@@ -40,7 +40,7 @@ public class Card {
             this.value = value;
 
         } else {
-            throw new IllegalArgumentException(
+            throw new IllegalArgumentException(     //If the value of the card isn't between the min and max value
                     "Value should be between " + MinValue + " and " + MaxValue + ". Got " + value);
         }
         if (suit >= MinSuit || suit <= MaxSuit) {
@@ -60,17 +60,17 @@ public class Card {
         return value;
     }
 
-    public String ColorToString() {
+    public String ColorToString() {  //returns the suit value as a string of said suit
         return suitToStr.get(suit);
     }
 
-    public String ValueToString() {
+    public String ValueToString() {  //returns the value of the card as a string
         return valueToStr.get(value);
     }
 
     @Override
     public String toString() {
-        return ValueToString() + " of " + ColorToString();
+        return ValueToString() + " of " + ColorToString();  //returns both the value and the color under the "[value] of [suit]" format
     }
 
 }
