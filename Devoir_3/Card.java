@@ -8,11 +8,11 @@ public class Card {
 
     public static final HashMap<Integer, String> valueToStr = new HashMap<Integer, String>();
     public static final HashMap<Integer, String> suitToStr = new HashMap<Integer, String>();
-    public static int MinValue = 1;
-    public static int MaxValue = 13;
+    public static final int MinValue = 1;
+    public static final int MaxValue = 13;
 
-    public static int MinSuit = 0;
-    public static int MaxSuit = 3;
+    public static final int MinSuit = 0;
+    public static final int MaxSuit = 3;
 
     static { // Static initialization
         suitToStr.put(0, "Hearts");
