@@ -14,17 +14,18 @@ public class LinkedList1 {
     public boolean find(String obj) {
         Node p;
         p = head;
+        // Head is null return false
         if (!Objects.nonNull(p)) {
             return false;
         }
 
-        if (p.value == obj) {
+        if (p.value.equals(obj)) {
             return true;
         }
 
         while (Objects.nonNull(p.next)) {
             p = p.next;
-            if (p.value == obj) {
+            if (p.value.equals(obj)) {
                 return true;
             }
         }
@@ -39,8 +40,9 @@ public class LinkedList1 {
                 head = head.next;
             } else {
                 head = null;
-            }
 
+            }
+            return true;
         } else {
             // Check other elements
             Node current = head;
@@ -60,6 +62,7 @@ public class LinkedList1 {
                     }
                     return true;
                 }
+
                 current = current.next;
             }
 
@@ -73,8 +76,8 @@ public class LinkedList1 {
         newNode = new Node();
         newNode.value = obj;
 
-        if (head == null) {
-            head = newNode;
+        if (head == null) {// if the head is null
+            head = newNode; // head is equal the obj
         } else if (head.value.compareTo(obj) >= 0) {
             newNode.next = head;
             head = newNode;
@@ -94,7 +97,9 @@ public class LinkedList1 {
                     // next next exists set current value to next next
                     newNode.next = current.next;
                     current.next = newNode;
+                    return;
                 }
+
                 // Iterates all elements
                 current = current.next;
             }
@@ -104,10 +109,12 @@ public class LinkedList1 {
 
     }
 
-    public String[] getList() {
+    public String[] getList() { // gets the list
         int count;
         Node p;
         String[] elements;
+
+        // Gets the number of items in the list
         count = 0;
         p = head;
         while (p != null) {
@@ -115,13 +122,14 @@ public class LinkedList1 {
             p = p.next;
         }
 
+        // Allocates and fill an array with the values
         elements = new String[count];
-        count = 0;
         p = head;
         for (int i = 0; i < count; i++) {
             elements[i] = p.value;
             p = p.next;
         }
+
         return elements;
     }
 
@@ -132,6 +140,7 @@ public class LinkedList1 {
             str += "('" + p.value + "') -> ";
             p = p.next;
         }
+        str += "null";
         return str;
     }
 }
